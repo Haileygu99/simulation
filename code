@@ -39,3 +39,9 @@ gene_expression = pd.DataFrame({"geneExpression":np.random.normal(10.3,2.45,size
 print(gene_expression)
 # gene expression graph, positively skewed.
 plt.hist(gene_expression.geneExpression, range = (5,20))
+
+
+
+# 5 SNPs dataframe (empty tho)
+SNPs = pd.DataFrame(index=np.arange(1,501),columns=['SNP1','SNP2','SNP3','SNP4','SNP5'])
+print(SNPs)
