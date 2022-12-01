@@ -2,7 +2,6 @@
 import pydbgen
 from pydbgen import pydbgen
 import faker 
-from pydbgen import pydbgen
 import pandas as pd
 import numpy as np 
 from faker import Faker
@@ -13,6 +12,7 @@ import time
 from datetime import datetime
 from datetime import date
 import matplotlib.pyplot as plt
+import scipy.stats as stats
 
 #Setting seed
 random.seed(1)
@@ -24,15 +24,16 @@ df=pd.DataFrame({
 })
 
 #Height and BMI functions
+
 def height_func(df):
     if df['Gender']=='male':
-        age=np.random.normal(loc=180, scale=(6.35+5.59)/2)
+        height=np.random.normal(loc=180, scale=(6.35+5.59)/2)
     else:
-        age=np.random.normal(loc=160, scale=(6.35+5.59)/2)
-    bmi=stats.skewnorm.rvs(a=3, loc=25, scale=4)
-    return age, bmi
+        height=np.random.normal(loc=160, scale=(6.35+5.59)/2)
+    bmi=stats.skewnorm.rvs(a=3, loc=27.3264, scale=4.77152)
+    return height, bmi
 
-df[['age','bmi']]=df.apply(height_func,axis=1,result_type='expand')
+df[['height','bmi']]=df.apply(height_func,axis=1,result_type='expand')
 print(df)
 plt.hist(df['bmi'])
 
