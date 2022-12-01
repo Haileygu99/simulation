@@ -109,5 +109,5 @@ random = random / max(random)      #Standadize all the vlues between 0 and 1.
 random = random * maxValue         #Multiply the standardized values by the maximum value.
 
 #Plot histogram to check skewness
-plt.hist(random,30,density=True, color = 'red', alpha=0.1,range = (30,60))
+plt.hist(random,40,density=True, color = 'red', alpha=0.1,range = (30,60))
 plt.show()
