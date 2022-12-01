@@ -82,8 +82,8 @@ fake_profile = [
      'gender': np.random.choice(["M", "F"], p=[0.5, 0.5]),
      'name': fake.name(),
      'age': calculateAge(fake.date_between(start_date='-60y', end_date='-30y')),
-     'city':fake.name(),
-     'country':fake.country(),
+     'city':fake.city(),
+     'country':np.random.choice(["NZ","CA","AU","GB","US"]),
      'education': random.choices(['primary','high school','bachelor','master','phd'],weights=[0.14,0.5,0.3,0.05,0.01]),
                                  }
 for x in range(500)]
