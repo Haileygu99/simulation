@@ -1,10 +1,22 @@
-import random
+# installing packages 
+import pydbgen
+from pydbgen import pydbgen
+import faker 
+from pydbgen import pydbgen
 import pandas as pd
-import numpy as np
+import numpy as np 
+from faker import Faker
+import secrets 
+import string
+import random
+import time
+from datetime import datetime
+from datetime import date
 import matplotlib.pyplot as plt
 
 #Setting seed
 random.seed(1)
+Faker.seed(1)
 
 #Random gender generation
 df=pd.DataFrame({
@@ -46,3 +58,39 @@ plt.hist(gene_expression.geneExpression, range = (5,20))
 # 5 SNPs dataframe (empty tho)
 SNPs = pd.DataFrame(index=np.arange(1,501),columns=['SNP1','SNP2','SNP3','SNP4','SNP5'])
 print(SNPs)
+
+
+
+# a function to generate age
+def calculateAge(dob):
+    today=date.today()
+    try:
+        birthday = dob.replace(year = today.year)
+    except ValueError:
+        birthday = dob.replace(year = today.year,
+                  month = dob.month + 1, day = 1)
+    if birthday > today:
+        return today.year - dob.year - 1
+    else:
+        return today.year - dob.year
+print(calculateAge(date(1998, 7, 4)), "years")
+
+# generating fake infomation including id, gender,names,age,city,country,education
+fake_profile = [
+    {'id': ''.join(secrets.choice(string.digits)
+                 for i in range(9)),
+     'gender': np.random.choice(["M", "F"], p=[0.5, 0.5]),
+     'name': fake.name(),
+     'age': calculateAge(fake.date_between(start_date='-60y', end_date='-30y')),
+     'city':fake.name(),
+     'country':fake.country(),
+     'education': random.choices(['primary','high school','bachelor','master','phd'],weights=[0.14,0.5,0.3,0.05,0.01]),
+                                 }
+for x in range(500)]
+
+#1% phd, 5% masters, 30% bachelor, 50% high school, 14% primary
+
+# data frame containing the above information
+
+df = pd.DataFrame(fake_profile)
+print(df)
