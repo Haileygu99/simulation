@@ -22,3 +22,11 @@ def height_func(df):
 #Applying height function to dataset
 df['age']=df.apply(height_func,axis=1)
 print(df)
+
+
+#Age dataset
+age=pd.DataFrame({"Age":np.random.normal(40.3,5.242,size=500)
+                 })
+print(age)
+#histogram 
+plt.hist(age.Age, range = (30,60))
