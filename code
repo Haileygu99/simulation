@@ -17,6 +17,7 @@ import scipy.stats as stats
 #Setting seed
 random.seed(1)
 Faker.seed(1)
+fake = Faker()
 
 #Random gender generation
 df=pd.DataFrame({
