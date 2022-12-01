@@ -13,6 +13,7 @@ from datetime import datetime
 from datetime import date
 import matplotlib.pyplot as plt
 import scipy.stats as stats
+from scipy.stats import skewnorm
 
 #Setting seed
 random.seed(1)
@@ -75,31 +76,12 @@ print(SNP)
 
 
 
-
-
-
-
-# a function to generate age
-def calculateAge(dob):
-    today=date.today()
-    try:
-        birthday = dob.replace(year = today.year)
-    except ValueError:
-        birthday = dob.replace(year = today.year,
-                  month = dob.month + 1, day = 1)
-    if birthday > today:
-        return today.year - dob.year - 1
-    else:
-        return today.year - dob.year
-print(calculateAge(date(1998, 7, 4)), "years")
-
 # generating fake infomation including id, gender,names,age,city,country,education
 fake_profile = [
     {'id': ''.join(secrets.choice(string.digits)
                  for i in range(9)),
      'gender': np.random.choice(["M", "F"], p=[0.5, 0.5]),
      'name': fake.name(),
-     'age': calculateAge(fake.date_between(start_date='-60y', end_date='-30y')),
      'city':fake.city(),
      'country':np.random.choice(["NZ","CA","AU","GB","US"]),
      'education': random.choices(['primary','high school','bachelor','master','phd'],weights=[0.14,0.5,0.3,0.05,0.01]),
@@ -113,3 +95,19 @@ for x in range(500)]
 df_profile = pd.DataFrame(fake_profile)
 print(df_profile)
 print(df)
+
+# Generating age right-skewed 
+numValues = 500
+maxValue = 60
+minValue = 30
+skewness = 2   #Negative values are left skewed, positive values are right skewed.
+
+random = skewnorm.rvs(a = skewness,loc=maxValue, size=numValues)  #Skewnorm function
+
+random = random - min(random)      #Shift the set so the minimum value is equal to zero.
+random = random / max(random)      #Standadize all the vlues between 0 and 1. 
+random = random * maxValue         #Multiply the standardized values by the maximum value.
+
+#Plot histogram to check skewness
+plt.hist(random,30,density=True, color = 'red', alpha=0.1,range = (30,60))
+plt.show()
