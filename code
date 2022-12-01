@@ -61,6 +61,22 @@ plt.hist(gene_expression.geneExpression, range = (5,20))
 SNPs = pd.DataFrame(index=np.arange(1,501),columns=['SNP1','SNP2','SNP3','SNP4','SNP5'])
 print(SNPs)
 
+# SNPs again, 2 should appear the most, then 1, then 0.
+fake_SNPs = [
+    {'SNP1':random.choices(['0','1','2'],weights=[0.18,0.23,0.48]),
+     'SNP2':random.choices(['0','1','2'],weights=[0.18,0.23,0.48]),
+     'SNP3':random.choices(['0','1','2'],weights=[0.18,0.23,0.48]),
+     'SNP4':random.choices(['0','1','2'],weights=[0.18,0.23,0.48]),
+     'SNP5':random.choices(['0','1','2'],weights=[0.18,0.23,0.48])
+                                 }
+for x in range(500)]
+SNP = pd.DataFrame(fake_SNPs)
+print(SNP)
+
+
+
+
+
 
 
 # a function to generate age
