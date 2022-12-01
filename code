@@ -6,24 +6,19 @@ import matplotlib.pyplot as plt
 #Setting seed
 random.seed(1)
 
-#Male dataset
-df_male=pd.DataFrame({
-    "Gender":'male',
-    "height":np.random.normal(loc=180, scale=(6.35+5.59)/2, size=250)
+#Random gender generation
+df=pd.DataFrame({
+    "Gender":random.choices(['male','female'],k=500),
 })
 
-#Female dataset
-df_female=pd.DataFrame({
-    "Gender":'male',
-    "height":np.random.normal(loc=160, scale=(6.35+5.59)/2, size=250)
-})
+#Gender-dependent height generation, gaussian
+def height_func(df):
+    if df['Gender']=='male':
+        age=np.random.normal(loc=160, scale=(6.35+5.59)/2)
+    else:
+        age=np.random.normal(loc=180, scale=(6.35+5.59)/2)
+    return(age)
 
-#Merging male and female
-df_full=pd.concat([df_male,df_female])
-df_full['sample_id']=np.arange(start=1,stop=501,step=1)
-plt.hist(df_male['height'])
-plt.show()
-plt.hist(df_female['height'])
-plt.show()
-plt.hist(df_full['height'])
-plt.show()
+#Applying height function to dataset
+df['age']=df.apply(height_func,axis=1)
+print(df)
