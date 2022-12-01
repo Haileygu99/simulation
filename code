@@ -1,1 +1,29 @@
+import random
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
+#Setting seed
+random.seed(1)
+
+#Male dataset
+df_male=pd.DataFrame({
+    "Gender":'male',
+    "height":np.random.normal(loc=180, scale=(6.35+5.59)/2, size=250)
+})
+
+#Female dataset
+df_female=pd.DataFrame({
+    "Gender":'male',
+    "height":np.random.normal(loc=160, scale=(6.35+5.59)/2, size=250)
+})
+
+#Merging male and female
+df_full=pd.concat([df_male,df_female])
+df_full['sample_id']=np.arange(start=1,stop=501,step=1)
+plt.hist(df_male['height'])
+plt.show()
+plt.hist(df_female['height'])
+plt.show()
+plt.hist(df_full['height'])
+plt.show()
