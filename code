@@ -27,3 +27,12 @@ plt.hist(df_female['height'])
 plt.show()
 plt.hist(df_full['height'])
 plt.show()
+
+
+
+#Age dataset
+age=pd.DataFrame({"Age":np.random.normal(40.3,5.242,size=500)
+                 })
+print(age)
+#histogram 
+plt.hist(age.Age, range = (30,60))
