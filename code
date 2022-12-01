@@ -30,3 +30,12 @@ age=pd.DataFrame({"Age":np.random.normal(40.3,5.242,size=500)
 print(age)
 #histogram 
 plt.hist(age.Age, range = (30,60))
+
+
+
+#10 gene expressions 
+gene_expression = pd.DataFrame({"geneExpression":np.random.normal(10.3,2.45,size=500)})
+
+print(gene_expression)
+# gene expression graph, positively skewed.
+plt.hist(gene_expression.geneExpression, range = (5,20))
