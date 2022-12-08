@@ -115,3 +115,9 @@ df_full=pd.merge(age, df_full, left_index=True, right_index=True)
 df_full=pd.merge(SNP, df_full, left_index=True, right_index=True)
 df_full=pd.merge(gene_expression, df_full, left_index=True, right_index=True)
 df_full.drop(columns="Gender",inplace=True)
+
+#cc_status
+def cc_status(df):
+    x=np.round(0.009*df['geneExpression']+0.006*df['Age']+0.005*df['bmi'])
+    return x
+df_full['cc_status']=df_full.apply(cc_status,axis=1)
