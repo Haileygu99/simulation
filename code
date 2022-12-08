@@ -79,7 +79,7 @@ fake_profile = [
      'gender': np.random.choice(["M", "F"], p=[0.5, 0.5]),
      'name': fake.name(),
      'city':fake.city(),
-     'country':np.random.choice(["NZ","CA","AU","GB","US"]),
+     'country':np.random.choice(["US","UK","NZ","AU","CA"], p=[0.71,0.14,0.01,0.06,0.08]),
      'education': random.choices(['primary','high school','bachelor','master','phd'],weights=[0.14,0.5,0.3,0.05,0.01]),
                                  }
 for x in range(500)]
