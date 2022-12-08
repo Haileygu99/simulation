@@ -134,3 +134,37 @@ plt.interactive(False)
 df['gender'].value_counts().plot(kind='bar')
 plt.show(block=True)
 plt.interactive(False)
+
+
+#cc_status
+def cc_status(df):
+    x=np.round(0.009*df['geneExpression']+0.006*df['Age']+0.005*df['bmi'])
+    return x
+df_full['cc_status']=df_full.apply(cc_status,axis=1)
+
+#Table1
+#cases
+df_full[df_full['cc_status']==1].describe()
+np.median(df_full[df_full['cc_status']==1]['bmi'])
+np.std(df_full[df_full['cc_status']==1])
+len(df_full[(df_full['gender']=='M')&(df_full['cc_status']==1)])
+len(df_full[(df_full['gender']=='F')&(df_full['cc_status']==1)])
+df_full[df_full['cc_status']==1]['SNP1'].describe()
+df_full[df_full['cc_status']==1]['SNP2'].describe()
+df_full[df_full['cc_status']==1]['SNP3'].describe()
+df_full[df_full['cc_status']==1]['SNP4'].describe()
+df_full[df_full['cc_status']==1]['SNP5'].describe()
+df_full[df_full['cc_status']==1]['SNP5'].describe()
+df_full[df_full['cc_status']==1]['education'].describe()
+#controls
+df_full[df_full['cc_status']==0].describe()
+np.median(df_full[df_full['cc_status']==0]['bmi'])
+np.std(df_full[df_full['cc_status']==0])
+len(df_full[(df_full['gender']=='M')&(df_full['cc_status']==0)])
+len(df_full[(df_full['gender']=='F')&(df_full['cc_status']==0)])
+df_full[df_full['cc_status']==0]['SNP1'].describe()
+df_full[df_full['cc_status']==0]['SNP2'].describe()
+df_full[df_full['cc_status']==0]['SNP3'].describe()
+df_full[df_full['cc_status']==0]['SNP4'].describe()
+df_full[df_full['cc_status']==0]['SNP5'].describe()
+df_full[df_full['cc_status']==0]['education'].describe()
