@@ -121,3 +121,16 @@ def cc_status(df):
     x=np.round(0.009*df['geneExpression']+0.006*df['Age']+0.005*df['bmi'])
     return x
 df_full['cc_status']=df_full.apply(cc_status,axis=1)
+
+# GRAPHS
+df['education'].value_counts().plot(kind='bar')
+plt.show(block=True)
+plt.interactive(False)
+
+df['country'].value_counts().plot(kind='bar')
+plt.show(block=True)
+plt.interactive(False)
+
+df['gender'].value_counts().plot(kind='bar')
+plt.show(block=True)
+plt.interactive(False)
