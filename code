@@ -107,3 +107,11 @@ random = random * maxValue         #Multiply the standardized values by the maxi
 #Plot histogram to check skewness
 plt.hist(random,40,density=True, color = 'red', alpha=0.1,range = (30,60))
 plt.show()
+
+
+#joining datasets
+df_full=pd.merge(df, df_profile, left_index=True, right_index=True)
+df_full=pd.merge(age, df_full, left_index=True, right_index=True)
+df_full=pd.merge(SNP, df_full, left_index=True, right_index=True)
+df_full=pd.merge(gene_expression, df_full, left_index=True, right_index=True)
+df_full.drop(columns="Gender",inplace=True)
